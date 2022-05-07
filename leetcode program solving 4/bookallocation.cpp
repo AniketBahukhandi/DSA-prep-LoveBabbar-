@@ -43,7 +43,7 @@ bool ispossible(int arr[],int n,int s,int mid){
         else{
             studentcount+=1;
             if(studentcount>s ||arr[i]>mid){
-
+                return false;
             }
             pagesum=arr[i];
         }
