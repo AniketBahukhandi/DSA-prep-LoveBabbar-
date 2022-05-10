@@ -11,22 +11,6 @@ cout<<arr[i]<<"";
 }
 cout<<endl;
 }
-void painterpartition(int arr[],int n,int p){
-    int s=0,e=n-1;
-    int mid=s+(e-s)/2;
-    int ans=0;
-    while(s<=e){
-        if(ispossible(arr,n,p,mid)){
-            ans=mid;
-            e=mid-1;
-        }
-        else{
-            s=mid+1;
-        }
-        mid=s+(e-s)/2;
-    }
-    return ans;
-}
 bool ispossible(int arr[],int n,int p,int mid){
     int painter=0;
     int sum=0;
@@ -45,6 +29,27 @@ bool ispossible(int arr[],int n,int p,int mid){
     }
     return true;
 }
+int painterpartition(int arr[],int n,int p){
+    int s=0,sum=0;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+    }
+    int e=sum;
+    int mid=s+(e-s)/2;
+    int ans=-1;
+    while(s<=e){
+        if(ispossible(arr,n,p,mid)){
+            ans=mid;
+            e=mid-1;
+        }
+        else{
+            s=mid+1;
+        }
+        mid=s+(e-s)/2;
+    }
+    return ans;
+}
+
 int main()
 {
     int n;
@@ -53,6 +58,7 @@ int main()
     userin(arr,n);
     cout<<"enter the number of painter:";
     int p;cin>>p;
-    painterpartition(arr,n,p);
+    cout<<"the minimum amount is:";
+    cout<<painterpartition(arr,n,p);
     return 0;
 }
